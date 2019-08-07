@@ -1108,7 +1108,9 @@ jQuery(document).ready(function () {
     });
 
     socket.on('user join', (data) => {
-      $(supportBox).find('#userChatMessages').append('<li class="left clearfix"> <span class="chat-img1 pull-left"><i class="fa fa-check-circle"></i></span> <div class="chat-body1 clearfix"> <p>User join the chat</p> </div> </li>');
+      if( parseInt(me) !== parseInt(data.id) ) {
+        $(supportBox).find('#userChatMessages').append('<li class="left clearfix"> <span class="chat-img1 pull-left"><i class="fa fa-check-circle"></i></span> <div class="chat-body1 clearfix"> <p>User join the chat</p> </div> </li>');
+      }
     });
 
     socket.on('bug reporting', (err) => {
