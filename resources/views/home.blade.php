@@ -1083,14 +1083,10 @@ jQuery(document).ready(function () {
 
         // console.log(nicknames);
         for (var i = 0; i < data.length; i++) {
-                var nick = '<li class="left clearfix" data-name="' + data[i].name + '" data-userid="' + data[i].user_id + '" data-socket="' + data[i].socket_id + '" onclick="openChatBox(this)"><span class="chat-img pull-left"> <img src="' + yourAvatar + '" alt="User" class="img-circle"> </span> <div class="chat-body clearfix"> <div class="header_sec"> <strong class="primary-font">' + data[i].name + '</strong> </div> </div> </li>'
-                html += nick;
-
-                // nick.onclick = function(e) {
-                //     e.preventDefault();
-                //     // socket.emit('get old messages', {id: $(this).attr('data-id')});
-                //     openChatBox(this);
-                // }
+            var nick = '<li class="left clearfix" data-name="' + data[i].name + '" data-userid="' + data[i].user_id + '" data-socket="' + data[i].socket_id + '" onclick="openChatBox(this)"><span class="chat-img pull-left"> <img src="' + yourAvatar + '" alt="User" class="img-circle"> </span> <div class="chat-body clearfix"> <div class="header_sec"> <strong class="primary-font">' + data[i].name + '</strong> </div> </div> </li>';
+            if( parseInt(data[i].user_id) !== parseInt(me)) {
+              html += nick;
+            }
         }
 
         // //update counter
