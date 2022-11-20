@@ -58,8 +58,8 @@
             </div></div>
          </div>
          <!--chat_sidebar-->
-         
-         
+
+
          <div class="col-sm-9 message_section">
          <div class="row">
          <div class="new_message_head">
@@ -75,7 +75,7 @@
   </ul> -->
 </div></div>
          </div><!--new_message_head-->
-         
+
          <div class="chat_area">
          <ul class="list-unstyled" id="userChatMessages">
       <li><p>Please join to a chat</p></li>
@@ -97,10 +97,10 @@
                         <div class="chat_time pull-left">09:40PM</div>
                      </div>
                   </li> -->
-                  
-                
-         
-         
+
+
+
+
          </ul>
          </div><!--chat_area-->
           <div class="message_write">
@@ -158,7 +158,7 @@
             <li class="chatboxopen">
                 <a href="#">No online user</a>
             </li>
-        </ul>   
+        </ul>
     </div>
     <div class="chatFooter" id="chatFooter">
         <p><span id="onlineUserCount"></span> users online <span class="batch batch-info pull-right" id="pendingChatCount">0</span></p>
@@ -167,7 +167,7 @@
 <div class="popup-box chat-popup" id="qnimate">
     <div class="popup-head">
         <div class="popup-head-left pull-left">
-            <img src="" alt="avtr" id="chatUserAvatar"> 
+            <img src="" alt="avtr" id="chatUserAvatar">
             <span id="chatUserName"></span>
         </div>
         <div class="popup-head-right pull-right">
@@ -223,7 +223,7 @@
    z-index: 9999;
    }
    .search-query:focus + button {
-   z-index: 3;   
+   z-index: 3;
    }
    .all_conversation button {
    background: #f5f3f3 none repeat scroll 0 0;
@@ -418,7 +418,7 @@
 * All chat related styles goes down
 *-------------------------------------*/
 #chat-wrapper {
-    position: fixed; 
+    position: fixed;
     top:auto;
     right:20px;
     width:240px;
@@ -589,7 +589,7 @@
     overflow: auto;
     padding: 10px;
     transform: translate(0px, 0px);
-    margin-bottom: 0px; 
+    margin-bottom: 0px;
 }
 .popup-messages .chat-box-single-line {
     border-bottom: 1px solid #a4c6b5;
@@ -731,9 +731,9 @@
     z-index: -2;
 }
 .direct-chat-text::after, .direct-chat-text::before {
-   
+
     border-color: transparent #dfece7 transparent transparent;
-    
+
 }
 .direct-chat-text::after, .direct-chat-text::before {
     -moz-border-bottom-colors: none;
@@ -818,7 +818,7 @@
 
 @section('footer')
 <!-- END JAVASCRIPTS -->
-<script src="http://localhost/mmcm-chat/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="http://localhost/chatserver/node_modules/socket.io-client/dist/socket.io.js"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 let me = "{{ Auth::user()->id }}";
@@ -829,7 +829,7 @@ let myAvatar = "{{ asset('avatar/me.png') }}";
 let yourAvatar = "{{ asset('avatar/you.png') }}";
 var chatBox;
 console.log(chatBox);
-var socket = io.connect( 'http://192.168.0.117:4000' );
+var socket = io.connect( 'http://127.0.0.1:4000' );
 var supportBox;
 jQuery(document).ready(function () {
     chatBox = $('#qnimate');
@@ -873,7 +873,7 @@ jQuery(document).ready(function () {
             $(this).val('');
             return false;
         }
-        
+
     });
 
     let supportTextarea  = $(supportBox).find('#chatBoxTextarea');
@@ -886,7 +886,7 @@ jQuery(document).ready(function () {
             $(this).val('');
             return false;
         }
-        
+
     });
 
     $(supportIcon).on("click", function(e){
@@ -901,7 +901,7 @@ jQuery(document).ready(function () {
         if( messages.length > 0 ) {
             for (var i = messages.length - 1; i >= 0; i--) {
                 let name = ( parseInt( messages[i].sender_id ) === parseInt( me ) ) ? 'You' : messages[i].sender_name;
-                let date = new Date(messages[i].sending_at);
+                let date = new Date(messages[i].created_at);
                 let today = new Date();
                 let D = date.toDateString();
                 let MO = date.getMonth();
@@ -909,7 +909,7 @@ jQuery(document).ready(function () {
                 let M = date.getMinutes();
                 let AP = 'AM';
                 const diffTime = Math.abs(today.getTime() - date.getTime());
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 if ( H >= 12 ) {
                     H = H - 12;
                     AP = 'PM';
@@ -948,8 +948,8 @@ jQuery(document).ready(function () {
     //             let M = date.getMinutes();
     //             let AP = 'AM';
     //             const diffTime = Math.abs(today.getTime() - date.getTime());
-    //             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-    //             // console.log(diffDays); 
+    //             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    //             // console.log(diffDays);
     //             if ( H >= 12 ) {
     //                 H = H - 12;
     //                 AP = 'PM';
@@ -1034,7 +1034,7 @@ jQuery(document).ready(function () {
             'time': H + ':' + M + AP,
             'image': ( name == 'You' ) ? myAvatar : yourAvatar,
         };
-        
+
 
         showSupportMessage(chat);
 
@@ -1063,7 +1063,7 @@ jQuery(document).ready(function () {
             'image': ( name == 'You' ) ? myAvatar : yourAvatar,
             'sender_name': data.name
         };
-        
+
         showUserMessage(chat);
 
         // $(chatBox).find('.direct-chat-messages').append(chatTemplate);
@@ -1146,7 +1146,7 @@ function showUserMessage(chat) {
                 </div>-->
                 <!-- /.direct-chat-text -->
             </div>`;
-        
+
 
             $(chatBox).find('.direct-chat-messages').append(chatTemplate);
             if ( !$(chatBox).hasClass('popup-box-on') ) {
@@ -1190,7 +1190,7 @@ function openToChatBox(_this, supportBox) {
         confirmed = confirm('Are you sure to end current chat?');
 
         if( confirmed ) {
-            
+
         } else {
             return false;
         }
