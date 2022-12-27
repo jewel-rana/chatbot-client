@@ -829,7 +829,7 @@ let myAvatar = "{{ asset('avatar/me.png') }}";
 let yourAvatar = "{{ asset('avatar/you.png') }}";
 var chatBox;
 console.log(chatBox);
-var socket = io.connect( {{ config('chat.server', 'http://127.0.0.1:4000') }} );
+var socket = io.connect("{{ config('chat.server', 'http://127.0.0.1:4000') }}");
 var supportBox;
 jQuery(document).ready(function () {
     chatBox = $('#qnimate');
