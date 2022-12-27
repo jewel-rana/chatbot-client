@@ -818,7 +818,7 @@
 
 @section('footer')
 <!-- END JAVASCRIPTS -->
-<script src="http://localhost/chatserver/node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="{{ config('chat.socket_url', 'http://localhost/chatserver/node_modules/socket.io-client/dist/socket.io.js') }}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <script>
 let me = "{{ Auth::user()->id }}";
@@ -829,7 +829,7 @@ let myAvatar = "{{ asset('avatar/me.png') }}";
 let yourAvatar = "{{ asset('avatar/you.png') }}";
 var chatBox;
 console.log(chatBox);
-var socket = io.connect( 'http://127.0.0.1:4000' );
+var socket = io.connect( {{ config('chat.server', 'http://127.0.0.1:4000') }} );
 var supportBox;
 jQuery(document).ready(function () {
     chatBox = $('#qnimate');
